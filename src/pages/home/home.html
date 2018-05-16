@@ -1,0 +1,31 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			Social Login App
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<button ion-button (click)="login('facebook')" *ngIf="!provider.loggedin">
+		<ion-icon name="logo-facebook"></ion-icon> &nbsp;
+	Login with Facebook</button>
+	<button ion-button (click)="login('google')" *ngIf="!provider.loggedin"><ion-icon name="logo-google"></ion-icon> &nbsp; Login with Google</button>
+	<button ion-button (click)="login('twitter')" *ngIf="!provider.loggedin"> <ion-icon name="logo-twitter"></ion-icon> &nbsp; Login with Twitter</button>
+	<button ion-button (click)="login('github')" *ngIf="!provider.loggedin"><ion-icon name="logo-github"></ion-icon> &nbsp;Login with Github</button>
+
+
+	<ion-card *ngIf= "provider.loggedin">
+		<img src="{{ provider.profilePicture}}"/>
+		<ion-card-content>
+			<ion-card-title>
+				{{provider.name}}
+			</ion-card-title>
+			<p style="text-align:center ">
+				{{provider.email}}
+			</p>
+		</ion-card-content>
+	</ion-card>
+
+	<button ion-button (click)= "logout()" *ngIf = "provider.loggedin"> Logout </button>
+</ion-content>
