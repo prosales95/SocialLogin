@@ -2,6 +2,8 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import{AngularFireAuth} from 'angularfire2/auth'
 import firebase from 'firebase'
+import {WeatherPage} from "../weather/weather";
+import {ForecastPage} from "../forecast/forecast";
 
 @Component({
 	selector: 'page-home',
@@ -17,13 +19,13 @@ export class HomePage {
 	}
 
 
-	constructor(private fire: AngularFireAuth, 
-		public navCtrl: NavController, 
+	constructor(private fire: AngularFireAuth,
+		public navCtrl: NavController,
 		public ref: ChangeDetectorRef) {
 
 	}
 
-	
+
 
 		login (provider) {
 			let signInProvider = null;
@@ -50,24 +52,32 @@ export class HomePage {
 				}
 
 				this.fire.auth.signInWithPopup (signInProvider)
-				.then( res => { 
+				.then( res => {
 					console.log ('Logging in with '+ provider);
 					this.provider.loggedin = true;
 					this.provider.name=res.user.displayName;
 					this.provider.email=res.user.email;
-					this.provider.profilePicture=res.user.photoURL;			
+					this.provider.profilePicture=res.user.photoURL;
 					this.ref.detectChanges();
 					console.log(res);
 
 				})
-				
+
 			}
-	
+
 
 		logout() {
 			this.fire.auth.signOut();
 			this.provider.loggedin=false;
 
 		}
+
+		goToWeather(){
+	  this.navCtrl.push(WeatherPage);
+    }
+
+    goToForecast () {
+	  this.navCtrl.push(ForecastPage);
+    }
 	}
 

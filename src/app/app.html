@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content] ="content">
+  <ion-header>
+    <ion-toolbar color = "primary">
+      <ion-title> Weather Info </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button color= "secondary" menuClose ion-item *ngFor = "let p of pages" (click)="openPage(p)" >
+        <ion-icon [name]="p.icon" item-left> </ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+//Disable swipe to fo baCK cause poor UX combining STGB
+<ion-nav [root]="rootPage" #content
+         swipeBackEnabled = "false"></ion-nav>

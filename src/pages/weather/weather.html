@@ -1,0 +1,60 @@
+<!--
+  Generated template for the WeatherPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>Weather</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<form [formGroup] ="weatherForm" novalidate>
+		<table width="100%">
+			<tr>
+				<td>
+					<ion-item>
+						<ion-label floating >Location</ion-label>
+						<ion-input type="text" formControlName = "location" name="location" >
+						</ion-input>
+					</ion-item> <br>
+					<p [hidden] = "weatherForm.controls.location.valid" danger padding-left> Enter valid location </p>
+				</td>
+			</tr>
+
+
+	<tr>
+		<button ion-button block [disabled] ="!weatherForm.controls.location.valid" (click)="getWeather(weatherForm)">
+			<ion-icon name="custom-button"></ion-icon>Get Weather</button>
+		</tr>
+	</table>
+</form>
+
+<div *ngIf = "weatherResult">
+	<h3>Right now</h3>
+	<h2 class="current-temp">
+		<ion-icon name=" {{summaryIcon}} ">
+		</ion-icon>	{{currentWeather.summary}}&deg;
+	</h2>
+</div>
+
+	<div>
+		<div>
+			<span>Feels like {{currentWeather.temperature}} </span>
+			<span>Dew Point:{{currentWeather.dewPoint}}  </span>
+			<span>Humidity: {{currentWeather.humidity}}% </span>
+			<span>Visibility:{{currentWeather.visibility}}mi </span>
+			<span>Pressure: {{currentWeather.pressure}} mb </span>
+		</div>
+	</div>
+
+
+
+
+</ion-content>

@@ -14,6 +14,11 @@
 	<button ion-button (click)="login('twitter')" *ngIf="!provider.loggedin"> <ion-icon name="logo-twitter"></ion-icon> &nbsp; Login with Twitter</button>
 	<button ion-button (click)="login('github')" *ngIf="!provider.loggedin"><ion-icon name="logo-github"></ion-icon> &nbsp;Login with Github</button>
 
+  <button color="dark" ion-button icon-start >
+    <ion-icon name="search">Swipe from left to right :)</ion-icon>
+  </button>
+
+
 
 	<ion-card *ngIf= "provider.loggedin">
 		<img src="{{ provider.profilePicture}}"/>
